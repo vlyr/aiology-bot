@@ -1,23 +1,24 @@
 import { BotWithCache, editRole } from "../../deps.ts";
+import type { Timezone } from '../types.ts';
 
 const timezoneJsonData = await Deno.readTextFile("timezones.json");
 const timezones = JSON.parse(timezoneJsonData);
 
 export const timezoneUtc = new Map();
-timezones.forEach((element: any) => {
+timezones.forEach((element: Timezone) => {
     timezoneUtc.set(element.code, element.offset)
 });
 
 const roleRe = /[0-9]{2}:[0-9]{2} \([a-zA-Z]+\)/;
 const timezoneRe = /[a-zA-Z]+/;
 
-export const getTimezoneObj = (timezoneAbbr: string) => {
+export const getTimezoneObj = (timezoneAbbr: string): Timezone | null => {
     for (const i in timezones) {
         if (timezones[i].code === timezoneAbbr.toUpperCase()) {
             return timezones[i];
         }
     }
-    return undefined;
+    return null;
 }
 
 export const updateRoles = (bot: BotWithCache) => {

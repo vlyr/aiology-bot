@@ -9,7 +9,6 @@ import { commands } from '../commands/mod.ts'
 const log = logger({ name: 'Event: InteractionCreate' })
 
 events.interactionCreate = async (rawBot: any, interaction: any) => {
-  console.log("SHIT");
   const bot = rawBot as BotWithCache
 
   if (interaction.data && interaction.id) {

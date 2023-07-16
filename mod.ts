@@ -3,9 +3,7 @@ import { BOT_ID, BOT_TOKEN } from './configs.ts'
 import { logger } from './src/utils/logger.ts'
 import { events } from './src/events/mod.ts'
 import { updateRoles } from './src/utils/timezone.ts';
-import { updateCommands,getGuildFromId } from './src/utils/helpers.ts'
-// Import it like this. There might be a newer version of this fix later, but I would not expect much changes.
-import { Role, editRole } from './deps.ts';
+import { updateCommands } from './src/utils/helpers.ts'
 
 const log = logger({ name: 'Main' })
 

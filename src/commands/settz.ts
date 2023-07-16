@@ -19,9 +19,8 @@ createCommand({
   execute: async (bot, interaction) => {
     if(!interaction.guildId) return;
 
-    let server = await getGuildFromId(bot, interaction.guildId);
-
-    let userRoles = [...interaction.member!.roles.values()];
+    const server = await getGuildFromId(bot, interaction.guildId);
+    const userRoles = [...interaction.member!.roles.values()];
 
     for (const [key, _] of timezoneUtc.entries()) {
       const role = server.roles.find(r => r.name.endsWith(`(${key})`));
@@ -40,10 +39,9 @@ createCommand({
       }
     }
 
-    const tzInputName = interaction.data!.options!.find(x => x.name === "timezone")!.value;
+    const tzInputName = (interaction.data!.options!.find(x => x.name === "timezone")!.value as string).toUpperCase();
     if (timezoneUtc.has(tzInputName)) {
 
-        let server = await getGuildFromId(bot, interaction.guildId!);
         const role = [...server.roles.values()].find(r => r.name.endsWith(`(${tzInputName})`));
 
         if (role !== undefined) {
@@ -59,8 +57,8 @@ createCommand({
             await addRole(bot, interaction.guildId, interaction.user.id, newRole.id)
         }
 
-        const tzObj = getTimezoneObj(tzInputName as string);
-        console.log(tzObj);
+        const tzObj = getTimezoneObj(tzInputName)!;
+
         await bot.helpers.sendInteractionResponse(interaction.id, interaction.token, {
           type: InteractionResponseTypes.ChannelMessageWithSource,
           data: {
@@ -77,6 +75,7 @@ createCommand({
           },
         })
     }
+
     updateRoles(bot);
   },
 })
