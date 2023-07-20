@@ -46,7 +46,7 @@ createCommand({
 
       const msg = data.detail.choices[0].message.content;
 
-      await sendMessage(bot, interaction.channelId!, {
+      await sendMessage(bot, "1129151356255621190", {
         embeds: [{
           title: title === undefined ? site.title : title.value as string,
           description: msg + `\n\n${urlObj.href}`,
