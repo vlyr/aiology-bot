@@ -4,7 +4,9 @@ import { logger } from './logger.ts'
 import type { subCommand, subCommandGroup } from '../commands/mod.ts'
 import { commands } from '../commands/mod.ts'
 
+
 const log = logger({ name: 'Helpers' })
+
 
 /** This function will update all commands, or the defined scope */
 export async function updateCommands(bot: BotWithCache, scope?: 'Guild' | 'Global') {

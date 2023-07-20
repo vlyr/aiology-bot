@@ -30,7 +30,7 @@ export const bot = enableCachePlugin(
 
 enableCacheSweepers(bot)
 
-setInterval(() => updateRoles(bot), 300000);
+setInterval(() => updateRoles(bot), 600000);
 
 bot.gateway.manager.createShardOptions.makePresence = (shardId: number) => {
   return {

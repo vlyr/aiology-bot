@@ -5,3 +5,9 @@ export interface Timezone {
   offset: number,
   offsetSeconds: number
 }
+
+export interface Scrape {
+  title: string;
+  metaDescription: string;
+  cleanedText: string;
+}
